@@ -12,26 +12,26 @@
 
 @implementation MailDocumentEditor_ReadNotifyMail : NSObject
 
-+ (void) send:(id)arg1 {
-	MailDocumentEditor *editor = self;
++ (void) send:(id)sender {
+	MailDocumentEditor *editor = (MailDocumentEditor *)self;
 	NSLog(@"Attached to the send method!");
 	
-	if (![MailDocumentEditor_ReadNotifyMail checkAddresses:arg1 withEditor:self]) {
-		[MailDocumentEditor_ReadNotifyMail ReadNotifyMail_showConfirmation:arg1 withEditor:self];
+	if (![MailDocumentEditor_ReadNotifyMail checkAddresses:sender withEditor:editor]) {
+		[MailDocumentEditor_ReadNotifyMail ReadNotifyMail_showConfirmation:sender withEditor:editor];
 	} else {
 		NSLog(@"Already readnotify'ed. Sending email");
-		[editor send_orig:(id)arg1];
+		[editor send_orig:(id)sender];
 	}
 
 }
 
-+ (BOOL) checkAddresses:(id)arg1 withEditor:(MailDocumentEditor *)editor {
++ (BOOL) checkAddresses:(id)sender withEditor:(MailDocumentEditor *)editor {
 	ComposeBackEnd *backEnd = [editor backEnd];
 	
 	NSArray *headers = [NSArray arrayWithObjects:@"to",@"cc",@"bcc",nil];
 	BOOL retVal = YES;
 		
-	[editor saveDocument:arg1];
+	[editor saveDocument:sender];
 	
 	for(int header=0;header<[headers count];header++) {
 		NSArray *result = (NSArray *)[backEnd addressListForHeader:[headers objectAtIndex:header]];
@@ -58,7 +58,7 @@
 	return retVal;
 }
 
-+ (void) modifyAddresses:(id)arg1 withEditor:(MailDocumentEditor *)editor {
++ (void) modifyAddresses:(id)sender withEditor:(MailDocumentEditor *)editor {
 	ComposeBackEnd *backEnd = [editor backEnd];
 	
 	NSArray *headers = [NSArray arrayWithObjects:@"to",@"cc",@"bcc",nil];
@@ -92,12 +92,12 @@
 		
 		[backEnd setAddressList:newAddresses forHeader:[headers objectAtIndex:header]];
 	}
-	[editor saveDocument:arg1];
+	[editor saveDocument:sender];
 }
 
-+ (void) ReadNotifyMail_showConfirmation:(id)arg1 withEditor:(MailDocumentEditor *)editor {
++ (void) ReadNotifyMail_showConfirmation:(id)sender withEditor:(MailDocumentEditor *)editor {
 	NSAlert *alert = [[NSAlert alloc] init];
-	NSArray *contextInfo = [[NSArray arrayWithObjects:arg1,editor,nil] retain] ;
+	NSArray *contextInfo = [[NSArray arrayWithObjects:sender,editor,nil] retain] ;
 	
 	[alert addButtonWithTitle:@"Yes"];
 	[alert addButtonWithTitle:@"No"];
@@ -113,7 +113,7 @@
 + (void) ReadNotifyMail_showConfirmationDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
 	NSArray *context = contextInfo;
 	MailDocumentEditor *editor;
-	id arg1;
+	id sender;
 	
 	if (context) {
 		if ([context count] != 2) {
@@ -125,18 +125,18 @@
 		return;
 	}
 	
-	arg1 = [context objectAtIndex:0];
+	sender = [context objectAtIndex:0];
 	editor = [context objectAtIndex:1];
 	
 	if (returnCode == NSAlertFirstButtonReturn) {
 		NSLog(@"[RNM] User said Yes.");
-		[MailDocumentEditor_ReadNotifyMail modifyAddresses:arg1 withEditor:editor];
+		[MailDocumentEditor_ReadNotifyMail modifyAddresses:sender withEditor:editor];
 	} else {
 		NSLog(@"[RNM] User said No.");
 	}
 	
 	[context autorelease];
-	[editor send_orig:(id)arg1];
+	[editor send_orig:(id)sender];
 
 }
 

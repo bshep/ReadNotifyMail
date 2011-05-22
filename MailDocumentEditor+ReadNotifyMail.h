@@ -11,12 +11,12 @@
 
 @interface MailDocumentEditor_ReadNotifyMail : NSObject
 
-+ (void) send:(id)arg1;
++ (void) send:(id)sender;
 
-+ (void) ReadNotifyMail_showConfirmation:(id)arg1 withEditor:(MailDocumentEditor *)editor;
++ (void) ReadNotifyMail_showConfirmation:(id)sender withEditor:(MailDocumentEditor *)editor;
 + (void) ReadNotifyMail_showConfirmationDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
-+ (void) modifyAddresses:(id)arg1 withEditor:(MailDocumentEditor *)editor;
-+ (BOOL) checkAddresses:(id)arg1 withEditor:(MailDocumentEditor *)editor;
++ (void) modifyAddresses:(id)sender withEditor:(MailDocumentEditor *)editor;
++ (BOOL) checkAddresses:(id)sender withEditor:(MailDocumentEditor *)editor;
 + (BOOL) checkAddress:(id)emailAddress;
 
 
