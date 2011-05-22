@@ -1285,14 +1285,12 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LD_OPENMP_FLAGS = "";
+				LD_OPENMP_FLAGS = "-fopenmp";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACH_O_TYPE = mh_bundle;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Message,
-				);
+				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 			};
@@ -1305,13 +1303,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LD_OPENMP_FLAGS = "";
+				LD_OPENMP_FLAGS = "-fopenmp";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACH_O_TYPE = mh_bundle;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Message,
-				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 			};
