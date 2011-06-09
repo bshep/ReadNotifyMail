@@ -1,1 +1,1 @@
-<a href='http://www.pledgie.com/campaigns/15458'><img alt='Click here to lend your support to: ReadNotifyMail and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15458.png?skin_name=chrome' border='0' /></a>
+<a href='http://www.pledgie.com/campaigns/15458'><img alt='Click here to lend your support to: ReadNotifyMail and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15458.png' border='0' /></a>
